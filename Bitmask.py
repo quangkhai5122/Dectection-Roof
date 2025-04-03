@@ -4,8 +4,9 @@ import cv2
 import base64
 import io
 from PIL import Image
+import datascience
 
-json_path = "D:\\TTNT 2025\\Data\\json\\241.json"
+json_path = "D:\\TTNT 2025\\Data\\json\\121.json"
 with open(json_path, 'r') as f:
     data = json.load(f)
 
@@ -34,7 +35,7 @@ for shape in data['shapes']:
         cv2.fillPoly(mask, [points], color=255)
 
 # Lưu ảnh mask dưới dạng PNG
-mask_output_path = "D:\\TTNT 2025\\Data\\bitmask\\mask_241.png"
+mask_output_path = "D:\\TTNT 2025\\Data\\bitmask\\mask_121.png"
 cv2.imwrite(mask_output_path, mask)
 
 print(f'Ảnh mask đã được lưu tại: {mask_output_path}')
