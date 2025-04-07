@@ -1,0 +1,3 @@
+tesorflow==2.19.0
+keras==3.9.1
+segmentation-models==1.0.1
