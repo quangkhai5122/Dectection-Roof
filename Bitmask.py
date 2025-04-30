@@ -1,22 +1,13 @@
-import os
 import json
 import numpy as np
 import cv2 
 import base64
 import io
 from PIL import Image
+import datascience
 
-json_folder = "D:\\TTNT 2025\\Data\\json_vn"
-output_mask_folder = "D:\\TTNT 2025\\Data\\labels_vn"
-image_folder = "D:\\TTNT 2025\\Data\\images_vn"
-
-os.makedirs(output_mask_folder, exist_ok=True)
-
-json_files = [f for f in os.listdir(json_folder) if f.endswith(".json")]
-
-for json_file in json_files:
-    json_path = os.path.join(json_folder, json_file)
-    
+for i in range (10, 99):
+    json_path = f'Data/json_final/{i}.json'
     with open(json_path, 'r') as f:
         data = json.load(f)
 
@@ -43,11 +34,9 @@ for json_file in json_files:
             points = points.reshape((-1, 1, 2))
             # Vẽ polygon đầy đủ trên mask với màu trắng (255)
             cv2.fillPoly(mask, [points], color=255)
-            
-    mask = mask.reshape((height, width, 1))
 
-    output_filename = os.path.splitext(json_file)[0] + ".png"
-    output_path = os.path.join(output_mask_folder, output_filename)
+    # Lưu ảnh mask dưới dạng PNG
+    mask_output_path = f'Data/labels_final/{i}.png'
+    cv2.imwrite(mask_output_path, mask)
 
-    cv2.imwrite(output_path, mask)
-    print(f"Đã lưu mask: {output_path}")
+    print(f'Ảnh mask đã được lưu tại: {mask_output_path}')
