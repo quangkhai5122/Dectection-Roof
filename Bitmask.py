@@ -6,7 +6,7 @@ import io
 from PIL import Image
 import datascience
 
-for i in range (10, 99):
+for i in range (49, 101):
     json_path = f'Data/json_final/{i}.json'
     with open(json_path, 'r') as f:
         data = json.load(f)
